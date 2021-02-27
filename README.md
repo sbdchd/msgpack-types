@@ -9,3 +9,10 @@ Allows for autocomplete and static typing.
 ```
 pip install msgpack-types
 ```
+
+## related
+
+- <https://github.com/sbdchd/django-types>
+- <https://github.com/sbdchd/djangorestframework-types>
+- <https://github.com/sbdchd/celery-types>
+- <https://github.com/sbdchd/mongo-types>
