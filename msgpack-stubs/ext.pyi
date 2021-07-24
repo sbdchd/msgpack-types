@@ -4,7 +4,7 @@ import datetime
 
 class _ExtType(NamedTuple):
     code: int
-    code: bytes
+    data: bytes
 
 class ExtType(_ExtType): ...
 
