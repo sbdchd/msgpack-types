@@ -16,7 +16,7 @@ def unpackb(
     strict_map_key: bool = ...,
     object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
     object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
-    list_hook: Optional[[Callable[[List[Any]], Any]]] = ...,
+    list_hook: Optional[Callable[[List[Any]], Any]] = ...,
     unicode_errors: Optional[str] = ...,
     max_buffer_size: int = ...,
     ext_hook: Callable[[int, bytes], Any] = ...,
@@ -38,7 +38,7 @@ class Unpacker:
         strict_map_key: bool = ...,
         object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
         object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
-        list_hook: Optional[[Callable[[List[Any]], Any]]] = ...,
+        list_hook: Optional[Callable[[List[Any]], Any]] = ...,
         unicode_errors: Optional[str] = ...,
         max_buffer_size: int = ...,
         ext_hook: Callable[[int, bytes], Any] = ...,
@@ -78,4 +78,3 @@ class Packer:
     def bytes(self) -> bytes: ...
     def reset(self) -> None: ...
     def getbuffer(self) -> memoryview: ...
-
