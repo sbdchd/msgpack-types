@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "msgpack-types"
-version = "0.2.0"
+version = "0.3.0"
 description = "Type stubs for msgpack"
 repository = "https://github.com/sbdchd/msgpack-types"
 readme = "README.md"
