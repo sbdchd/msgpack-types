@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from typing_extensions import Protocol
 
 
 class _FileLike(Protocol):
-    def read(n: int) -> bytes: ...
+    def read(self, n: int) -> bytes: ...
 
 
 def unpackb(
