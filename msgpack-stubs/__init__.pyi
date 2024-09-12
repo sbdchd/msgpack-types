@@ -95,7 +95,6 @@ __all__ = [
     "__version__",
     "dump",
     "dumps",
-    "ext",
     "load",
     "loads",
     "pack",
