@@ -1,12 +1,13 @@
 from __future__ import annotations
-from typing import NamedTuple
-import datetime
 
-class _ExtType(NamedTuple):
+import datetime
+from typing import NamedTuple
+
+
+class ExtType(NamedTuple):
     code: int
     data: bytes
 
-class ExtType(_ExtType): ...
 
 class TimeStamp:
     def __init__(self, seconds: int, nanoseconds: int = ...) -> None: ...
@@ -26,4 +27,3 @@ class TimeStamp:
     def to_datetime(self) -> datetime.datetime: ...
     @staticmethod
     def from_datetime(dt: datetime.datetime) -> TimeStamp: ...
-
