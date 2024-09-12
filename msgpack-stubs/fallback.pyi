@@ -1,23 +1,27 @@
 from __future__ import annotations
-from typing import Any, Callable, Dict, List, Optional, Tuple
+
+from collections.abc import Callable
+from typing import Any, Dict, List, Optional, Tuple
 
 from typing_extensions import Protocol
+
 
 class _FileLike(Protocol):
     def read(n: int) -> bytes: ...
 
+
 def unpackb(
     packed: bytes,
-    file_like: Optional[_FileLike] = ...,
+    file_like: _FileLike | None = ...,
     read_size: int = ...,
     use_list: bool = ...,
     raw: bool = ...,
     timestamp: int = ...,
     strict_map_key: bool = ...,
-    object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
-    object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
-    list_hook: Optional[Callable[[List[Any]], Any]] = ...,
-    unicode_errors: Optional[str] = ...,
+    object_hook: Callable[[dict[Any, Any]], Any] | None = ...,
+    object_pairs_hook: Callable[[list[tuple[Any, Any]]], Any] | None = ...,
+    list_hook: Callable[[list[Any]], Any] | None = ...,
+    unicode_errors: str | None = ...,
     max_buffer_size: int = ...,
     ext_hook: Callable[[int, bytes], Any] = ...,
     max_str_len: int = ...,
@@ -27,19 +31,20 @@ def unpackb(
     max_ext_len: int = ...,
 ) -> Any: ...
 
+
 class Unpacker:
     def __init__(
         self,
-        file_like: Optional[_FileLike] = ...,
+        file_like: _FileLike | None = ...,
         read_size: int = ...,
         use_list: bool = ...,
         raw: bool = ...,
         timestamp: int = ...,
         strict_map_key: bool = ...,
-        object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
-        object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
-        list_hook: Optional[Callable[[List[Any]], Any]] = ...,
-        unicode_errors: Optional[str] = ...,
+        object_hook: Callable[[dict[Any, Any]], Any] | None = ...,
+        object_pairs_hook: Callable[[list[tuple[Any, Any]]], Any] | None = ...,
+        list_hook: Callable[[list[Any]], Any] | None = ...,
+        unicode_errors: str | None = ...,
         max_buffer_size: int = ...,
         ext_hook: Callable[[int, bytes], Any] = ...,
         max_str_len: int = ...,
@@ -59,16 +64,17 @@ class Unpacker:
     def read_map_header(self) -> Any: ...
     def tell(self) -> int: ...
 
+
 class Packer:
     def __init__(
         self,
-        default: Optional[Callable[[Any], Any]] = ...,
+        default: Callable[[Any], Any] | None = ...,
         use_single_float: bool = ...,
         autoreset: bool = ...,
         use_bin_type: bool = ...,
         strict_types: bool = ...,
-        datetime: bool = ...,
-        unicode_errors: Optional[str] = ...,
+        datetime: int = ...,
+        unicode_errors: str | None = ...,
     ): ...
     def pack(self, obj: Any) -> bytes: ...
     def pack_map_pairs(self, pairs: Any) -> bytes: ...
