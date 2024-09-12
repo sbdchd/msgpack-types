@@ -34,7 +34,7 @@ def pack(
     autoreset: bool = ...,
     use_bin_type: bool = ...,
     strict_types: bool = ...,
-    datetime: bool = ...,
+    datetime: int = ...,
     unicode_errors: Optional[str] = ...,
 ) -> None: ...
 def packb(
@@ -44,7 +44,7 @@ def packb(
     autoreset: bool = ...,
     use_bin_type: bool = ...,
     strict_types: bool = ...,
-    datetime: bool = ...,
+    datetime: int = ...,
     unicode_errors: Optional[str] = ...,
 ) -> bytes: ...
 def unpack(
