@@ -23,6 +23,9 @@ from .fallback import Packer, Unpacker, unpackb
 version: tuple[int, int, int] = ...
 __version__: str = ...
 
+class _WriteStream(Protocol):
+    def write(self, b: bytes) -> int: ...
+
 class _Stream(Protocol):
     def read(self) -> bytes: ...
 
@@ -31,7 +34,8 @@ class _FileLike(Protocol):
 
 def pack(
     o: Any,
-    stream: _Stream,
+    stream: _WriteStream,
+    *,
     default: Callable[[Any], Any] | None = ...,
     use_single_float: bool = ...,
     autoreset: bool = ...,
@@ -42,6 +46,7 @@ def pack(
 ) -> None: ...
 def packb(
     o: Any,
+    *,
     default: Callable[[Any], Any] | None = ...,
     use_single_float: bool = ...,
     autoreset: bool = ...,
@@ -52,6 +57,7 @@ def packb(
 ) -> bytes: ...
 def unpack(
     stream: _Stream,
+    *,
     file_like: _FileLike | None = ...,
     read_size: int = ...,
     use_list: bool = ...,
