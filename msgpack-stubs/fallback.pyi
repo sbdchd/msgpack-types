@@ -73,7 +73,7 @@ class Packer:
         autoreset: bool = ...,
         use_bin_type: bool = ...,
         strict_types: bool = ...,
-        datetime: int = ...,
+        datetime: bool = ...,
         unicode_errors: str | None = ...,
     ): ...
     def pack(self, obj: Any) -> bytes: ...
