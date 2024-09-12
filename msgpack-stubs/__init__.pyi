@@ -1,8 +1,11 @@
 from __future__ import annotations
-from typing import Any, Callable, Dict, List, Optional, Tuple
-from msgpack._version import version
-from msgpack import _version
-from msgpack.exceptions import (
+
+from collections.abc import Callable
+from typing import Any
+
+from typing_extensions import Protocol
+
+from .exceptions import (
     BufferFull,
     ExtraData,
     FormatError,
@@ -14,51 +17,57 @@ from msgpack.exceptions import (
     UnpackException,
     UnpackValueError,
 )
-from typing_extensions import Protocol
-from msgpack.fallback import Packer, Unpacker, unpackb
-from msgpack import exceptions
-from msgpack.ext import ExtType, Timestamp
-from msgpack import ext
+from .ext import ExtType, Timestamp
+from .fallback import Packer, Unpacker, unpackb
+
+version: tuple[int, int, int] = ...
+__version__: str = ...
+
+class _WriteStream(Protocol):
+    def write(self, b: bytes) -> int: ...
 
 class _Stream(Protocol):
     def read(self) -> bytes: ...
 
 class _FileLike(Protocol):
-    def read(n: int) -> bytes: ...
+    def read(self, n: int) -> bytes: ...
 
 def pack(
     o: Any,
-    stream: _Stream,
-    default: Optional[Callable[[Any], Any]] = ...,
+    stream: _WriteStream,
+    *,
+    default: Callable[[Any], Any] | None = ...,
     use_single_float: bool = ...,
     autoreset: bool = ...,
     use_bin_type: bool = ...,
     strict_types: bool = ...,
     datetime: bool = ...,
-    unicode_errors: Optional[str] = ...,
+    unicode_errors: str | None = ...,
 ) -> None: ...
 def packb(
     o: Any,
-    default: Optional[Callable[[Any], Any]] = ...,
+    *,
+    default: Callable[[Any], Any] | None = ...,
     use_single_float: bool = ...,
     autoreset: bool = ...,
     use_bin_type: bool = ...,
     strict_types: bool = ...,
     datetime: bool = ...,
-    unicode_errors: Optional[str] = ...,
+    unicode_errors: str | None = ...,
 ) -> bytes: ...
 def unpack(
     stream: _Stream,
-    file_like: Optional[_FileLike] = ...,
+    *,
+    file_like: _FileLike | None = ...,
     read_size: int = ...,
     use_list: bool = ...,
     raw: bool = ...,
     timestamp: int = ...,
     strict_map_key: bool = ...,
-    object_hook: Optional[Callable[[Dict[Any, Any]], Any]] = ...,
-    object_pairs_hook: Optional[Callable[[List[Tuple[Any, Any]]], Any]] = ...,
-    list_hook: Optional[Callable[[List[Any]], Any]] = ...,
-    unicode_errors: Optional[str] = ...,
+    object_hook: Callable[[dict[Any, Any]], Any] | None = ...,
+    object_pairs_hook: Callable[[list[tuple[Any, Any]]], Any] | None = ...,
+    list_hook: Callable[[list[Any]], Any] | None = ...,
+    unicode_errors: str | None = ...,
     max_buffer_size: int = ...,
     ext_hook: Callable[[int, bytes], Any] = ...,
     max_str_len: int = ...,
@@ -88,12 +97,10 @@ __all__ = [
     "Timestamp",
     "UnpackException",
     "UnpackValueError",
-    "_version",
     "Unpacker",
+    "__version__",
     "dump",
     "dumps",
-    "exceptions",
-    "ext",
     "load",
     "loads",
     "pack",
@@ -102,4 +109,3 @@ __all__ = [
     "unpackb",
     "version",
 ]
-
