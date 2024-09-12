@@ -5,10 +5,8 @@ from typing import Any
 
 from typing_extensions import Protocol
 
-
 class _FileLike(Protocol):
     def read(self, n: int) -> bytes: ...
-
 
 def unpackb(
     packed: bytes,
@@ -30,7 +28,6 @@ def unpackb(
     max_map_len: int = ...,
     max_ext_len: int = ...,
 ) -> Any: ...
-
 
 class Unpacker:
     def __init__(
@@ -63,7 +60,6 @@ class Unpacker:
     def read_array_header(self) -> Any: ...
     def read_map_header(self) -> Any: ...
     def tell(self) -> int: ...
-
 
 class Packer:
     def __init__(

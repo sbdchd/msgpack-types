@@ -3,11 +3,9 @@ from __future__ import annotations
 import datetime
 from typing import NamedTuple
 
-
 class ExtType(NamedTuple):
     code: int
     data: bytes
-
 
 class Timestamp:
     def __init__(self, seconds: int, nanoseconds: int = ...) -> None: ...

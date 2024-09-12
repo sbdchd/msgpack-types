@@ -3,8 +3,8 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import Any
 
-from
-import exceptions, ext
+from typing_extensions import Protocol
+
 from .exceptions import (
     BufferFull,
     ExtraData,
@@ -19,20 +19,15 @@ from .exceptions import (
 )
 from .ext import ExtType, Timestamp
 from .fallback import Packer, Unpacker, unpackb
-from typing_extensions import Protocol
-
 
 version: tuple[int, int, int] = ...
 __version__: str = ...
 
-
 class _Stream(Protocol):
     def read(self) -> bytes: ...
 
-
 class _FileLike(Protocol):
-    def read(n: int) -> bytes: ...
-
+    def read(self, n: int) -> bytes: ...
 
 def pack(
     o: Any,
@@ -76,7 +71,6 @@ def unpack(
     max_ext_len: int = ...,
 ) -> Any: ...
 
-
 load = unpack
 loads = unpackb
 
@@ -98,6 +92,7 @@ __all__ = [
     "UnpackException",
     "UnpackValueError",
     "Unpacker",
+    "__version__",
     "dump",
     "dumps",
     "ext",
@@ -107,6 +102,5 @@ __all__ = [
     "packb",
     "unpack",
     "unpackb",
-    "__version__",
     "version",
 ]
