@@ -3,13 +3,13 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import Any
 
-from typing_extensions import Protocol
+from typing_extensions import Protocol, Buffer
 
 class _FileLike(Protocol):
     def read(self, n: int) -> bytes: ...
 
 def unpackb(
-    packed: bytes,
+    packed: Buffer,
     file_like: _FileLike | None = ...,
     read_size: int = ...,
     use_list: bool = ...,
@@ -50,7 +50,7 @@ class Unpacker:
         max_map_len: int = ...,
         max_ext_len: int = ...,
     ): ...
-    def feed(self, next_bytes: bytes) -> None: ...
+    def feed(self, next_bytes: Buffer) -> None: ...
     def read_bytes(self, n: int) -> bytearray: ...
     def __iter__(self) -> Unpacker: ...
     def __next__(self) -> Any: ...
