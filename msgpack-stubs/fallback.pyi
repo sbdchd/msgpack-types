@@ -6,7 +6,7 @@ from typing import Any
 from typing_extensions import Protocol, Buffer
 
 class _FileLike(Protocol):
-    def read(self, n: int) -> bytes: ...
+    def read(self, n: int, /) -> bytes: ...
 
 def unpackb(
     packed: Buffer,
